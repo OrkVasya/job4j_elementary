@@ -5,17 +5,22 @@ public class JavaNameValidator {
         if (name.isEmpty()) {
             return false;
         }
-        for (int i = 0; i < name.length(); i++) {
-            int code = name.codePointAt(i);
-            if (i == 0 && !isLowerLatinLetter(code)) {
-                return false;
-            } else if (Character.isDigit(code)) {
-                continue;
-            } else if (!(isSpecialSymbol(code) || isUpperLatinLetter(code) || isLowerLatinLetter(code))) {
+        int code = name.codePointAt(0);
+        if (!isLowerLatinLetter(code)) {
+            return false;
+        }
+        for (int i = 1; i < name.length(); i++) {
+            code = name.codePointAt(i);
+            if (!isCorrectSymbol(code)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private static boolean isCorrectSymbol(int code) {
+        return Character.isDigit(code) || isSpecialSymbol(code) ||
+                isUpperLatinLetter(code) || isLowerLatinLetter(code);
     }
 
     public static boolean isSpecialSymbol(int code) {
