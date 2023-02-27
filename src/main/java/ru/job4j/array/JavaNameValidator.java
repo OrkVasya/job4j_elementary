@@ -19,8 +19,8 @@ public class JavaNameValidator {
     }
 
     private static boolean isCorrectSymbol(int code) {
-        return Character.isDigit(code) || isSpecialSymbol(code) ||
-                isUpperLatinLetter(code) || isLowerLatinLetter(code);
+        return Character.isDigit(code) || isSpecialSymbol(code)
+                || isUpperLatinLetter(code) || isLowerLatinLetter(code);
     }
 
     public static boolean isSpecialSymbol(int code) {
